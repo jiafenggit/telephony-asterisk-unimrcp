@@ -38,6 +38,15 @@ else
   fi
 fi
 
+# Check if the AST_SPEECH_IN_PROMPT patch was appiled to Asterisk
+if ( grep -q -R AST_SPEECH_IN_PROMPT $asterisk_dir/include ) ; then
+        cat >>confdefs.h <<_ACEOF
+#define AST_SPEECH_IN_PROMPT_PATCH 1
+_ACEOF
+else
+        echo AST_SPEECH_IN_PROMPT patch missing
+fi
+
 if test "x$prefix" = "xNONE"; then
 echo "Prefix empty, so using Asterisk directory"
 prefix="${asterisk_dir}/lib/asterisk/modules"
